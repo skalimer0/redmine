@@ -14,3 +14,5 @@ end
 
 # Initialize the Rails application
 Rails.application.initialize!
+
+Redmine::Utils::relative_url_root = ENV['RAILS_RELATIVE_URL_ROOT']
