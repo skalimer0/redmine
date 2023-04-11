@@ -45,18 +45,17 @@ class JournalsController < ApplicationController
   end
 
   def diff
-    @issue = @journal.issue
     if params[:detail_id].present?
       @detail = @journal.details.find_by_id(params[:detail_id])
     else
       @detail = @journal.details.detect {|d| d.property == 'attr' && d.prop_key == 'description'}
     end
-    unless @issue && @detail
+    unless @journal.journalized && @detail
       render_404
       return false
     end
     if @detail.property == 'cf'
-      unless @detail.custom_field && @detail.custom_field.visible_by?(@issue.project, User.current)
+      unless @detail.custom_field && @detail.custom_field.visible_by?(@project, User.current)
         raise ::Unauthorized
       end
     end
@@ -107,8 +106,11 @@ class JournalsController < ApplicationController
   private
 
   def find_journal
-    @journal = Journal.visible.find(params[:id])
+    @journal = Journal.find(params[:id])
     @project = @journal.journalized.project
+    unless User.current.allowed_to?(:view_private_notes, @project) || @journal.journalized.visible_by?(@project, User.current)
+      raise ::Unauthorized
+    end              
   rescue ActiveRecord::RecordNotFound
     render_404
   end

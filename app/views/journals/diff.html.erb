@@ -1,11 +1,8 @@
-<h2><%= @issue.tracker %> #<%= @issue.id %></h2>
+<h2><%= @journal.journalized.to_s %></h2>
 <p><%= authoring @journal.created_on, @journal.user, :label => :label_updated_time_by %></p>
 
 <pre class="text-diff"><%= @diff.to_html %></pre>
 
-<p>
-  <%= link_to(l(:button_back), issue_path(@issue),
-              :onclick => 'if (document.referrer != "") {history.back(); return false;}') %>
-</p>
+<p><a href="javascript:history.back()"><%= l(:button_back) %></a></p>
 
-<% html_title "#{@issue.tracker.name} ##{@issue.id}: #{@issue.subject}" %>
+<% html_title @journal.journalized.to_s %>
