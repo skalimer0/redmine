@@ -17,7 +17,7 @@ gem "mail", "~> 2.7.1"
 gem 'csv', (RUBY_VERSION < '2.5' ? ['>= 3.1.1', '<= 3.1.5'] : '~> 3.1.1')
 gem 'nokogiri', '~> 1.12.5'
 gem 'i18n', '~> 1.8.2'
-gem "rbpdf", "~> 1.20.0"
+gem 'rbpdf', '~> 1.21.0'
 gem 'addressable'
 gem 'rubyzip', '~> 2.3.0'
 
