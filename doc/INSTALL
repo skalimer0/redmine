@@ -18,7 +18,8 @@ https://www.redmine.org/
 Optional:
 * SCM binaries (e.g. svn, git...), for repository browsing (must be
   available in PATH)
-* ImageMagick (to enable Gantt export to png images)
+* ImageMagick (to enable thumbnail generation and Gantt export to PNG images)
+* Ghostscript (to enable thumbnail generation for PDF attachments)
 
 Supported browsers:
 The current version of Firefox, Safari, Chrome, Chromium and Microsoft Edge.
